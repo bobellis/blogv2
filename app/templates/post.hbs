@@ -1,8 +1,28 @@
-<h1>{{model.title}}</h1>
+<h3>Post: <em>{{model.title}}</em></h3>
+{{#if isEditing}}
+<form>
+  <div class="form-group">
+    <label for="title">Title: </label>
+    {{input value=title id="title" class="form-control"}}
+  </div>
 
-<h2>Comments</h2>
+  <div class="form-group">
+    <label for="body">Body: </label>
+    {{textarea value=body id="body" class="form-control" rows="5"}}
+  </div>
+
+  <button class="btn btn-primary" {{action 'doneEditing'}}>Save</button>
+</form>
+{{else}}
+<p>
+  {{body}}
+</p>
+<button class="btn btn-primary" {{action 'edit'}}>Edit</button>
+{{/if}}
+
+<h5>Comments</h5>
 <ul>
-{{#each model as |post|}}
-<li>{{post.comment}}</li>
-
+  {{#each comment in model.comments}}
+    <li>{{comment.text}}</li>
+  {{/each}}
 </ul>

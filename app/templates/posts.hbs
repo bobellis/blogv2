@@ -1,12 +1,24 @@
 <h1>Dracula's Blog Posts</h1>
 
+<div class="row ">
 
-<ul class="list-unstyled">
-  {{#each model as |post|}}
-    <li>
-      {{#link-to 'post' post}}
-        {{post.title}}
-      {{/link-to}}
-    </li>
-  {{/each}}
-</ul>
+  <div class="col-md-4">
+    <h3> Posts: </h3>
+      {{#each model as |post|}}
+        <p>
+          {{#link-to 'post' post}}
+            {{post.title}}
+          {{/link-to}}
+        </p>
+      {{/each}}
+
+      {{#link-to 'new-post' classNames="btn btn-primary"}}New scary post{{/link-to}}
+
+  </div>
+
+  <div class="col-md-8">
+    {{outlet}}
+  </div>
+
+
+</div>

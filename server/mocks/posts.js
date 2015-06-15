@@ -22,28 +22,39 @@ if (!Array.prototype.find) {
   };
 }
 
-
-var posts = [{
-  id: 1,
-  title: 'Bananas'
-},
-
-{
-  id: 2,
-  title: 'Apples'
-}];
-
 var comments = [{
   id: 1,
   text: "this is a great comment",
-  posts: [1]
+  post: 1
 },
+
 {
   id: 2,
   text: "This is also a great comment",
-  posts: [2]
-}
-]
+  post: 2
+},
+
+{
+  id: 3,
+  text: "This is the greatest comment",
+  post: 2
+}];
+
+var posts = [{
+  id: 1,
+  title: 'Bananas',
+  body: 'Whoa, bananas are awesome!',
+  comments: [1]
+},
+
+{
+  id: 2,
+  title: 'Apples',
+  body: 'Oh no, apples suck!',
+  comments: [2,3]
+}];
+
+
 
 module.exports = function(app) {
   var express = require('express');
@@ -51,7 +62,8 @@ module.exports = function(app) {
 
   postsRouter.get('/', function(req, res) {
     res.send({
-      'posts': posts
+      'posts': posts,
+      'comments': comments
     });
   });
 
@@ -63,7 +75,8 @@ module.exports = function(app) {
     res.send({
       'post': posts.find(function(post){
           return post.id == req.params.id
-      })
+      }),
+      'comments': comments
     });
   });
 
