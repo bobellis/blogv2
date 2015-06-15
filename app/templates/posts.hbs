@@ -1,0 +1,12 @@
+<h1>Dracula's Blog Posts</h1>
+
+
+<ul class="list-unstyled">
+  {{#each model as |post|}}
+    <li>
+      {{#link-to 'post' post}}
+        {{post.title}}
+      {{/link-to}}
+    </li>
+  {{/each}}
+</ul>
